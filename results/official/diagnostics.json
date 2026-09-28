@@ -1,0 +1,986 @@
+{
+  "input_sha256" : "cffb7133419d93fe364a53015a7d3ead289f671cbfaf6f4befe87f2a21914130",
+  "rules_hash" : "f38c970471955067a91fafbddce989911902d58aebc649ff481b4888ccaf634a",
+  "execution_hash" : "25df6778dda9956ca9b46a65714bb58657d03e4dfa5686fe62dfed9a5fa251b9",
+  "input_audit" : {
+    "features" : 144,
+    "demands" : 17,
+    "flow_tph" : 488.72,
+    "building_parts" : 244,
+    "polygon_holes" : 74,
+    "coordinate_positions" : 6288,
+    "networks" : 29,
+    "chambers" : 9,
+    "sources" : 1,
+    "existing_length_m" : 1459.6531642751002,
+    "invalid_demand_ids" : [ ],
+    "warning_counts" : { },
+    "warnings" : [ ]
+  },
+  "capabilities" : {
+    "existing_flow_required" : false,
+    "reconstruction_evaluable" : false,
+    "components" : 1,
+    "edges" : 29,
+    "vertices" : 30
+  },
+  "missing_existing_flow_ids" : [ "115", "116", "117", "118", "119", "120", "121", "122", "123", "124", "125", "126", "127", "128", "129", "130", "131", "132", "133", "134", "135", "136", "137", "138", "139", "140", "141", "142", "143" ],
+  "profile" : "lct_2026_09_20_user_XY",
+  "linear_reconstruction_status" : "not_in_current_model",
+  "rule_decisions" : [ {
+    "id" : "R01",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026",
+    "status" : "from_appendix",
+    "interpretation" : "2D; без реконструкции существующей сети и надбавки за повороты; ДУ по каждому непрерывному пути (разъяснения 1–2); выход — heat_network, heat_chamber, technical_node, variant_summary; неподключение только если маршрут не найден (разъяснение 15)"
+  }, {
+    "id" : "R02",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, разъяснение 3",
+    "status" : "documented_interpretation",
+    "interpretation" : "Финальный прямой участок идёт от ближайшей к точке границы содержащего полигона. Если такой прямой участок геометрически невозможен (перекрыт другим ограничением), берётся ближайшая допустимая точка границы того же полигона; такие точки перечислены в diagnostics.terminal_approaches"
+  }, {
+    "id" : "R03",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, разъяснения 3–4, приложение §1.2",
+    "status" : "documented_interpretation",
+    "interpretation" : "«Полигон ОКС» = весь объект restriction oks, содержащий точку (все части MultiPolygon): отступ к нему не действует только на финальном прямом участке; пересекать другие части запрещено"
+  }, {
+    "id" : "R04",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, таблица 2, разъяснения 6–8, 10",
+    "status" : "from_appendix",
+    "interpretation" : "road/tram: один прямой спецпроход под углом ≥45° к линии или границе полигона на входе, продление 3 м, K 1,60/1,75; gas/power/heat_network ±2 м, K 1,25/1,15/1,05; перекрытие — максимальный K; railway и прочие запретные — отступ 1 м"
+  }, {
+    "id" : "R05",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, разъяснения 11–13",
+    "status" : "documented_interpretation",
+    "interpretation" : "Существующая камера обязательна в радиусе 10.0 м (+0.1 м запас) при свободной степени; камеры, не лежащие на линии, привязываются к ближайшей линии в пределах 1.5 м; стоимость новой камеры — по наибольшему ДУ всех примыкающих участков, включая существующую линию"
+  }, {
+    "id" : "R06",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, приложение §2.1, разъяснение 5",
+    "status" : "documented_interpretation",
+    "interpretation" : "Поворот ≤90° проверяется и внутри линии, и в камере между входящей трубой и каждой исходящей"
+  }, {
+    "id" : "R07",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, разъяснения 9 и 17",
+    "status" : "documented_interpretation",
+    "interpretation" : "Неизвестные restriction_type: skip; невалидные полигоны: error; каждое допущение записывается в diagnostics.input_audit.warnings"
+  }, {
+    "id" : "R08",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, приложение §5, таблица 2",
+    "status" : "documented_interpretation",
+    "interpretation" : "Режим с глубиной (--stage depth) — отдельный набор вариантов поверх тех же трасс. Глубина в точках подключения и врезках — обычная 3.0 м, если профиль это допускает; иначе она освобождается и это пишется в диагностику. Вертикальные требования к газу, кабелю и существующей сети действуют на всём спецучастке ±2 м (и на всём плановом перекрытии габаритов при малом угле); под дорогой и трамваем — на всём спецучастке. Сторона (выше/ниже) выбирается по минимальной стоимости, профиль — огибающая с уклоном 0.1; Kгл по среднему концов, деление в точке 3,0 м"
+  } ],
+  "optimization" : {
+    "grid" : {
+      "cells" : 4779032,
+      "resolution_m" : 0.5,
+      "plan_dn" : 400
+    },
+    "fields_seconds" : 4.343287291,
+    "planned_restarts" : 12,
+    "restarts" : 24,
+    "restarts_seconds" : 40.39459525,
+    "relocations" : 821,
+    "polish_seconds" : 891.2080765370002,
+    "polish_gain" : 0.3037936554431635,
+    "defanned" : 113,
+    "pinned_chains" : 295,
+    "moved_chambers" : 3,
+    "ray_snaps" : 258,
+    "raw_0" : "37.634525404536,55.697363823657 i=0/99 placed",
+    "raw_1" : "37.634525404536,55.697363823657 i=0/99 placed",
+    "raw_2" : "37.634517414386,55.697368827948 i=0/99 placed",
+    "chamber_slides" : 59,
+    "vector_failures" : 0,
+    "raw_steps" : 123,
+    "vector_seconds" : 677.1495362519997,
+    "candidate_0" : "restart 9 key 13.6811 -> 13.3774 S 13.295201696885",
+    "candidate_1" : "restart 10 key 18.9130 -> 13.2800 S 13.165599964536",
+    "candidate_2" : "restart 4 key 20.1759 -> 13.9814 S 13.866923527702",
+    "candidate_3" : "restart 7 key 1018.5764 -> 13.3840 S 13.257390279339",
+    "candidate_4" : "restart 2 key 1024.1049 -> 13.1571 S 12.993544319832",
+    "candidate_5" : "restart 11 key 2019.9081 -> 13.2700 S 13.155242400251",
+    "candidate_6" : "restart 8 key 2019.9314 -> 13.2125 S 13.071617121355",
+    "audit_1" : "EDGE TURN_ANGLE",
+    "audit_2" : "INTERSECTION dn 250/125",
+    "located_junctions" : 12,
+    "junction_37.635554895008,55.697271925373" : "dn 200/125 weaker -> t10",
+    "unpinned_fallbacks" : 3,
+    "candidate_7" : "restart 3 key 2022.5897 -> 13.9154 S 13.919585430425",
+    "candidate_8" : "restart 1 key 3025.5732 -> 13.2387 S 13.109641712173",
+    "exact_router_chains" : 8,
+    "candidate_9" : "restart 0 key 3027.2537 -> 3025.4470 S 26.818901413205 unconnected [12, 14, 6]",
+    "candidate_10" : "restart 5 key 3027.2848 -> 13.2453 S 13.122892699623",
+    "candidate_11" : "restart 6 key 3027.3564 -> 15.8182 S 15.661308188845",
+    "candidate_12" : "restart 9 key 13.6707 -> 13.3204 S 13.241577198509",
+    "candidate_13" : "restart 6 key 13.7318 -> 13.2295 S 13.099163891455",
+    "candidate_14" : "restart 0 key 22.3212 -> 14.4043 S 14.267596307991",
+    "straightened_vertices" : 2,
+    "raw_3" : "37.634510641755,55.700229999610 i=0/62 turn",
+    "raw_4" : "37.634507326118,55.700232442317 i=0/62 turn",
+    "raw_5" : "37.634525404536,55.697363823657 i=0/99 placed",
+    "raw_6" : "37.634525404536,55.697363823657 i=0/99 placed",
+    "candidate_15" : "restart 3 key 1021.9254 -> 13.8837 S 17.790564560426",
+    "candidate_16" : "restart 10 key 1022.9593 -> 13.8304 S 13.687162349304",
+    "candidate_17" : "restart 11 key 2019.8768 -> 13.2632 S 13.150883518433",
+    "raw_7" : "37.634517061873,55.697368640966 i=0/99 placed",
+    "candidate_18" : "restart 1 key 2020.2047 -> 1016.8149 S 17.048758724710 unconnected [6]",
+    "candidate_19" : "restart 7 key 2021.7973 -> 2021.5555 S 21.415883569035 unconnected [1, 3]",
+    "candidate_20" : "restart 5 key 2022.6777 -> 13.3250 S 13.244217077627",
+    "candidate_21" : "restart 4 key 2023.3346 -> 2022.1604 S 22.009610966367 unconnected [12, 2]",
+    "candidate_22" : "restart 8 key 3022.6376 -> 13.2286 S 13.096098429545",
+    "vector_failure_0" : "TURN_ANGLE Turn exceeds 90 degrees null",
+    "raw_8" : "37.633210044728,55.699779787904 i=0/16 turn",
+    "raw_9" : "37.633193326319,55.699789404778 i=0/16 turn",
+    "audit_3" : "INTERSECTION dn 200/125",
+    "located_culprits" : 2,
+    "located_37.634490511174,55.699594189365" : "TURN_ANGLE null dn 125 -> t1",
+    "junction_37.634490511174,55.699594189365" : "dn 125/125 weaker -> t1",
+    "candidate_23" : "restart 2 key 4028.9437 -> 1018.0571 rejected: NEW_GABARIT_OVERLAP: Tube pairs meet again outside their junction unconnected [3]",
+    "elite_23_rejected" : "NEW_GABARIT_OVERLAP: Tube pairs meet again outside their junction",
+    "candidate_24" : "restart 2 key 13.1587 -> 13.1571 S 12.993544319832",
+    "candidate_25" : "restart 2 key 13.1615 -> 13.1567 S 12.992565058866",
+    "candidate_26" : "restart 2 key 13.2093 -> 13.1700 S 13.016333102533",
+    "candidate_27" : "restart 2 key 13.1848 -> 13.1531 S 12.989013848405",
+    "candidate_28" : "restart 2 key 13.1948 -> 13.1571 S 12.993838349583",
+    "candidate_29" : "restart 2 key 13.2132 -> 13.1739 S 13.020628142462",
+    "candidate_30" : "restart 2 key 13.2657 -> 13.2241 S 13.092442907309",
+    "candidate_31" : "restart 2 key 13.2515 -> 13.1739 S 13.020922172213",
+    "candidate_32" : "restart 8 key 13.2228 -> 13.2122 S 13.069143108017",
+    "candidate_33" : "restart 8 key 13.2609 -> 13.2083 S 13.064612636590",
+    "candidate_34" : "restart 8 key 13.2679 -> 13.2125 S 13.071617121355",
+    "candidate_35" : "restart 8 key 13.3217 -> 13.2241 S 13.094188116883",
+    "candidate_36" : "restart 8 key 13.3481 -> 13.2865 S 13.144044059263",
+    "candidate_37" : "restart 8 key 1015.9281 -> 1015.8614 S 15.716087953979 unconnected [11]",
+    "candidate_38" : "restart 8 key 13.2136 -> 13.2125 S 13.071617121355",
+    "candidate_39" : "restart 8 key 13.4048 -> 13.2126 S 13.070785668125",
+    "candidate_40" : "restart 1 key 13.3194 -> 13.2419 S 13.111355714629",
+    "candidate_41" : "restart 1 key 1015.9275 -> 1015.8410 S 15.718417453178 unconnected [11]",
+    "candidate_42" : "restart 1 key 13.3548 -> 13.3055 S 13.200711666779",
+    "candidate_43" : "restart 1 key 13.3066 -> 13.2621 S 13.134949142624",
+    "candidate_44" : "restart 1 key 13.3618 -> 13.3143 S 13.180436757124",
+    "candidate_45" : "restart 1 key 13.2388 -> 13.2388 S 13.104293367051",
+    "candidate_46" : "restart 1 key 13.4263 -> 13.3121 S 13.217888442747",
+    "candidate_47" : "restart 1 key 13.3499 -> 13.3055 S 13.200711666779",
+    "candidate_48" : "restart 8 key 13.2483 -> 13.2281 S 13.093086972598",
+    "candidate_49" : "restart 8 key 13.2521 -> 13.2435 S 13.099349616373",
+    "candidate_50" : "restart 8 key 13.2628 -> 13.2285 S 13.093537539847",
+    "candidate_51" : "restart 8 key 13.3185 -> 13.2081 S 13.071735231330",
+    "candidate_52" : "restart 8 key 13.2521 -> 13.2435 S 13.099349616373",
+    "candidate_53" : "restart 8 key 13.3167 -> 13.2290 S 13.097132471741",
+    "candidate_54" : "restart 8 key 13.2296 -> 13.2286 S 13.096098429545",
+    "chamber_turn_problems" : 3,
+    "chamber_turn_37.633841126281,55.697594349547" : "90.00 deg joined=true parentDn=200 childDn=100 child->t13",
+    "located_37.635340385994,55.698476723851" : "TURN_ANGLE null dn 125 -> t5",
+    "junction_37.635340385994,55.698476723851" : "dn 200/125 weaker -> t5",
+    "elite_55_repair_0" : "ok",
+    "candidate_55" : "restart 8 key 1016.3502 -> 13.3801 S 13.234292342240",
+    "candidate_56" : "restart 11 key 13.2908 -> 13.2229 S 13.097555217896",
+    "candidate_57" : "restart 11 key 13.6520 -> 13.5314 S 13.403279036557",
+    "candidate_58" : "restart 11 key 14.0847 -> 13.7938 S 13.689602753613",
+    "candidate_59" : "restart 11 key 13.3829 -> 13.3348 S 13.253389953366",
+    "candidate_60" : "restart 11 key 13.6591 -> 13.2233 S 13.098005873443",
+    "candidate_61" : "restart 11 key 13.2822 -> 13.2644 S 13.151901561238",
+    "candidate_62" : "restart 11 key 13.3220 -> 13.2537 S 13.137337258167",
+    "candidate_63" : "restart 11 key 13.6723 -> 13.5482 S 13.421397260175",
+    "candidate_64" : "restart 9 key 13.3429 -> 13.2488 S 13.135144882221",
+    "chamber_turn_37.633606619104,55.699499228657" : "91.23 deg joined=true parentDn=250 childDn=125 child->t1",
+    "elite_65_repair_0" : "ok",
+    "candidate_65" : "restart 9 key 13.5724 -> 14.0474 S 14.003252103929",
+    "candidate_66" : "restart 9 key 13.2591 -> 13.2488 S 13.135144882221",
+    "candidate_67" : "restart 9 key 1015.9105 -> 1015.8149 S 15.700558829847 unconnected [11]",
+    "candidate_68" : "restart 9 key 13.2881 -> 13.2486 S 13.138715197685",
+    "candidate_69" : "restart 9 key 13.6192 -> 13.5263 S 13.405610502140",
+    "candidate_70" : "restart 9 key 13.6091 -> 13.3212 S 13.208721193015",
+    "candidate_71" : "restart 9 key 1015.9158 -> 1015.8157 S 15.696941387812 unconnected [11]",
+    "elite_rank_used" : 27,
+    "approximate_score" : 13.153141689785583,
+    "total_seconds" : 758.066652999,
+    "rejected_jumps" : 371,
+    "v2_restarts" : 3,
+    "v2_restarts_seconds" : 238.43876625,
+    "v2_polish_seconds" : 29.121021167000002,
+    "v2_polish_gain" : 9.551530792825323,
+    "v2_vector_seconds" : 16.364456876,
+    "v2_candidate_0" : "restart 2 key 1023.0737 -> 13.5222 S 13.398385065981",
+    "v2_candidate_1" : "restart 0 key 3027.4279 -> 13.3767 S 13.284633511321",
+    "v2_candidate_2" : "restart 1 key 3027.4808 -> 13.3810 S 13.280278850882",
+    "v2_elite_rank_used" : 2,
+    "v2_approximate_score" : 13.381038487294393,
+    "v3_restarts" : 3,
+    "v3_restarts_seconds" : 243.606048625,
+    "v3_polish_seconds" : 57.767768208999996,
+    "v3_polish_gain" : 8.243313149090644,
+    "v3_vector_seconds" : 13.756728999,
+    "v3_candidate_0" : "restart 0 key 1023.4886 -> 15.2453 S 15.056456665655",
+    "v3_candidate_1" : "restart 2 key 2019.9542 -> 13.2662 S 13.114087708741",
+    "v3_candidate_2" : "restart 1 key 2022.9446 -> 15.4618 S 15.284295379873",
+    "v3_elite_rank_used" : 1,
+    "v3_approximate_score" : 13.266165869032903,
+    "variant_1_source" : "v1 restart 2 perturbed 0.3 S 12.989013848405",
+    "variant_2_source" : "v1 restart 2 perturbed 0.2 S 13.016333102533",
+    "variant_3_source" : "v1 restart 8 perturbed 0.1 S 13.064612636590",
+    "verified_pool" : 77,
+    "algorithm" : "grid_steiner_forest",
+    "B3" : {
+      "id" : "lct19_1_39",
+      "object_type" : "variant_summary",
+      "variant_id" : "variant_1",
+      "rank" : 1,
+      "construction_cost" : 258130317.68,
+      "chamber_construction_cost" : 46000000.00,
+      "existing_chamber_tie_in_count" : 0,
+      "existing_chamber_tie_in_cost" : 0.00,
+      "unconnected_penalty" : 0,
+      "calculated_cost" : 258130317.68,
+      "new_network_length" : 1920.454984455,
+      "score" : 12.989013848405,
+      "unconnected_oks_ids" : [ ]
+    },
+    "baseline_fallback_used" : false,
+    "rejected_finalist_errors" : [ ],
+    "initial_route_failures" : null,
+    "unconnected_reasons" : { }
+  },
+  "verified_variants" : [ {
+    "variant_id" : "variant_1",
+    "rank" : 1,
+    "connected_demands" : 17,
+    "connected_flow_tph" : 488.72,
+    "calculated_cost" : 258130317.68,
+    "length" : 1920.454984455,
+    "score" : 12.989013848405,
+    "unconnected_oks_ids" : [ ],
+    "geometry_quality" : {
+      "corners" : 47,
+      "small_kinks" : 1,
+      "near_collinear" : 2,
+      "short_segments" : 1,
+      "chamber_jogs" : 3,
+      "min_segment_m" : 0.918
+    }
+  }, {
+    "variant_id" : "variant_2",
+    "rank" : 2,
+    "connected_demands" : 17,
+    "connected_flow_tph" : 488.72,
+    "calculated_cost" : 261674974.57,
+    "length" : 1896.477938191,
+    "score" : 13.016333102533,
+    "unconnected_oks_ids" : [ ],
+    "geometry_quality" : {
+      "corners" : 46,
+      "small_kinks" : 2,
+      "near_collinear" : 2,
+      "short_segments" : 1,
+      "chamber_jogs" : 2,
+      "min_segment_m" : 0.918
+    }
+  }, {
+    "variant_id" : "variant_3",
+    "rank" : 3,
+    "connected_demands" : 17,
+    "connected_flow_tph" : 488.72,
+    "calculated_cost" : 265092370.15,
+    "length" : 1880.675424130,
+    "score" : 13.064612636590,
+    "unconnected_oks_ids" : [ ],
+    "geometry_quality" : {
+      "corners" : 43,
+      "small_kinks" : 1,
+      "near_collinear" : 2,
+      "short_segments" : 1,
+      "chamber_jogs" : 2,
+      "min_segment_m" : 0.542
+    }
+  } ],
+  "terminal_approaches" : {
+    "1" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 125,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.634483302438, 55.699596611427 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "10" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 125,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.635555078441, 55.697276253038 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635864912873, 55.697265317927 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636011905737, 55.697176856063 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635856447870, 55.697244831464 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636030894064, 55.697172003960 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636030975996, 55.697171986290 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635985348731, 55.697181783742 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635951243692, 55.697189174241 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636092244742, 55.697158859102 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636324172015, 55.697257856343 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635923146054, 55.697195245387 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635923026572, 55.697195271222 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636301943877, 55.697224294236 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636318191418, 55.697247967294 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636333368903, 55.697270526712 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635859060230, 55.697230827008 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635859077405, 55.697230798262 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636350368747, 55.697295846318 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636291249423, 55.697208232580 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636131569297, 55.697150423365 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636131648395, 55.697150406580 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636274013101, 55.697182726136 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636359142032, 55.697309318698 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636176893513, 55.697142428990 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636265541049, 55.697170923846 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636265489453, 55.697170865822 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636381780341, 55.697342795128 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636199452297, 55.697142637942 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636199554745, 55.697142645456 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636392530965, 55.697358785798 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636405007860, 55.697377452733 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636415690496, 55.697393456351 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636415728318, 55.697393512545 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636438043435, 55.697426784079 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636446322305, 55.697439493502 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636463777238, 55.697465044824 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636472056382, 55.697477496510 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636494432086, 55.697510712497 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636502559650, 55.697523746925 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636519186445, 55.697548684941 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636528961534, 55.697562054327 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636528964496, 55.697562058711 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636551471684, 55.697595534188 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636558402530, 55.697607093094 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636558454830, 55.697607152353 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636576675540, 55.697633310858 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636585474898, 55.697645986263 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636599658407, 55.697673085298 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636599967129, 55.697679571077 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636599961190, 55.697679600265 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636622074860, 55.697708538073 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636628419501, 55.697719462615 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636628426735, 55.697719477450 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636669687237, 55.697767909170 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636675025623, 55.697779600262 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636694770510, 55.697807268969 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636706877457, 55.697824912732 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636729947194, 55.697858777624 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636740630388, 55.697875267870 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636748519247, 55.697885618889 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636753290877, 55.697891895349 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636761485885, 55.697917219148 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636751340431, 55.697936535026 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636736699316, 55.697947726125 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636719417163, 55.697955229327 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636555947899, 55.697985530006 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636556352391, 55.697985560009 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636559868164, 55.697985820782 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636605900554, 55.697980277961 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636497882727, 55.698003388945 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636658973538, 55.697968563425 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636597849835, 55.697982202196 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636597919479, 55.697982187458 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636506455552, 55.698001814119 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636444560968, 55.698014620749 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636650528387, 55.697970806668 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636650542691, 55.697970803418 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636453315042, 55.698013232683 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636453236839, 55.698013249557 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636702207058, 55.697959718864 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.636713480830, 55.697956879646 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "11" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 65,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.633031529514, 55.699612279803 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "12" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 125,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.633242969344, 55.698630779894 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "13" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 100,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.633851506872, 55.697649121370 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "14" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 100,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.633783420954, 55.697518184505 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "15" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 125,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.631991247470, 55.696981251280 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "16" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 200,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.640904942010, 55.698377167089 ],
+        "valid" : true,
+        "obstacles" : [ {
+          "obstacle_id" : "96",
+          "required_axis_distance_m" : 5.44,
+          "polygon_part_zero_based" : 35,
+          "code" : "OTHER_OBSTACLE_CLEARANCE",
+          "axis_distance_m" : 3.3876105976132096
+        } ]
+      } ]
+    },
+    "17" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 100,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.639477432572, 55.696761252557 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "2" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 100,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.634953180911, 55.699866047923 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.634502160442, 55.699734878816 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.634353776588, 55.699903755359 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.634752060809, 55.700105358292 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635398128136, 55.699679111584 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635408366698, 55.699694293106 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "3" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 125,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.633001193141, 55.700242502362 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "4" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 150,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.636438822661, 55.700239681666 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "5" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 125,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.635327349799, 55.698481700900 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635127926809, 55.698676918917 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.635881242914, 55.699303090626 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      }, {
+        "outside_port_wgs84" : [ 37.637013475088, 55.698271351508 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "6" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 100,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.632057666786, 55.700114987309 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "7" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 125,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.638220029772, 55.697867421235 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "8" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 100,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.632327319717, 55.700287545178 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    },
+    "9" : {
+      "entry_policy" : "nearest_feasible_boundary",
+      "minimum_flow_diameter" : 125,
+      "prescribed_final_approach_found" : true,
+      "candidates" : [ {
+        "outside_port_wgs84" : [ 37.634518495373, 55.697359947060 ],
+        "valid" : true,
+        "obstacles" : [ ]
+      } ]
+    }
+  },
+  "depth_stage" : {
+    "output" : "result-depth.geojson",
+    "policy" : "appendix",
+    "normal_m" : 3.0,
+    "minimum_cover_m" : 0.7,
+    "maximum_slope" : 0.1,
+    "variants" : [ {
+      "variant_id" : "variant_1",
+      "from_xy_variant" : "variant_1",
+      "score" : 12.989013848405,
+      "xy_score" : 12.989013848405,
+      "tie_ins" : [ {
+        "tie_in" : "122:37.640136717587,55.699492723162",
+        "endpoint_policy" : "normal_at_terminals_and_tie_in",
+        "crossings" : [ ],
+        "min_top_depth_m" : 3.0,
+        "max_top_depth_m" : 3.0,
+        "profile_breakpoints" : 0,
+        "extra_depth_cost_rub" : 0.0
+      }, {
+        "tie_in" : "126:37.638543628085,55.697760521359",
+        "endpoint_policy" : "normal_at_terminals_and_tie_in",
+        "crossings" : [ ],
+        "min_top_depth_m" : 3.0,
+        "max_top_depth_m" : 3.0,
+        "profile_breakpoints" : 0,
+        "extra_depth_cost_rub" : 0.0
+      }, {
+        "tie_in" : "129:37.638065393319,55.697100812803",
+        "endpoint_policy" : "normal_at_terminals_and_tie_in",
+        "crossings" : [ ],
+        "min_top_depth_m" : 3.0,
+        "max_top_depth_m" : 3.0,
+        "profile_breakpoints" : 0,
+        "extra_depth_cost_rub" : 0.0
+      } ]
+    }, {
+      "variant_id" : "variant_2",
+      "from_xy_variant" : "variant_2",
+      "score" : 13.016333102533,
+      "xy_score" : 13.016333102533,
+      "tie_ins" : [ {
+        "tie_in" : "122:37.640136717587,55.699492723162",
+        "endpoint_policy" : "normal_at_terminals_and_tie_in",
+        "crossings" : [ ],
+        "min_top_depth_m" : 3.0,
+        "max_top_depth_m" : 3.0,
+        "profile_breakpoints" : 0,
+        "extra_depth_cost_rub" : 0.0
+      }, {
+        "tie_in" : "126:37.638543628085,55.697760521359",
+        "endpoint_policy" : "normal_at_terminals_and_tie_in",
+        "crossings" : [ ],
+        "min_top_depth_m" : 3.0,
+        "max_top_depth_m" : 3.0,
+        "profile_breakpoints" : 0,
+        "extra_depth_cost_rub" : 0.0
+      }, {
+        "tie_in" : "129:37.638065393319,55.697100812803",
+        "endpoint_policy" : "normal_at_terminals_and_tie_in",
+        "crossings" : [ ],
+        "min_top_depth_m" : 3.0,
+        "max_top_depth_m" : 3.0,
+        "profile_breakpoints" : 0,
+        "extra_depth_cost_rub" : 0.0
+      } ]
+    }, {
+      "variant_id" : "variant_3",
+      "from_xy_variant" : "variant_3",
+      "score" : 13.064612636590,
+      "xy_score" : 13.064612636590,
+      "tie_ins" : [ {
+        "tie_in" : "122:37.640136717587,55.699492723162",
+        "endpoint_policy" : "normal_at_terminals_and_tie_in",
+        "crossings" : [ ],
+        "min_top_depth_m" : 3.0,
+        "max_top_depth_m" : 3.0,
+        "profile_breakpoints" : 0,
+        "extra_depth_cost_rub" : 0.0
+      }, {
+        "tie_in" : "126:37.638554552559,55.697777398117",
+        "endpoint_policy" : "normal_at_terminals_and_tie_in",
+        "crossings" : [ ],
+        "min_top_depth_m" : 3.0,
+        "max_top_depth_m" : 3.0,
+        "profile_breakpoints" : 0,
+        "extra_depth_cost_rub" : 0.0
+      }, {
+        "tie_in" : "129:37.638065393319,55.697100812803",
+        "endpoint_policy" : "normal_at_terminals_and_tie_in",
+        "crossings" : [ ],
+        "min_top_depth_m" : 3.0,
+        "max_top_depth_m" : 3.0,
+        "profile_breakpoints" : 0,
+        "extra_depth_cost_rub" : 0.0
+      } ]
+    } ],
+    "verified_variants" : [ {
+      "variant_id" : "variant_1",
+      "rank" : 1,
+      "connected_demands" : 17,
+      "connected_flow_tph" : 488.72,
+      "calculated_cost" : 258130317.68,
+      "length" : 1920.454984455,
+      "score" : 12.989013848405,
+      "unconnected_oks_ids" : [ ],
+      "geometry_quality" : {
+        "corners" : 47,
+        "small_kinks" : 1,
+        "near_collinear" : 2,
+        "short_segments" : 1,
+        "chamber_jogs" : 3,
+        "min_segment_m" : 0.918
+      }
+    }, {
+      "variant_id" : "variant_2",
+      "rank" : 2,
+      "connected_demands" : 17,
+      "connected_flow_tph" : 488.72,
+      "calculated_cost" : 261674974.57,
+      "length" : 1896.477938191,
+      "score" : 13.016333102533,
+      "unconnected_oks_ids" : [ ],
+      "geometry_quality" : {
+        "corners" : 46,
+        "small_kinks" : 2,
+        "near_collinear" : 2,
+        "short_segments" : 1,
+        "chamber_jogs" : 2,
+        "min_segment_m" : 0.918
+      }
+    }, {
+      "variant_id" : "variant_3",
+      "rank" : 3,
+      "connected_demands" : 17,
+      "connected_flow_tph" : 488.72,
+      "calculated_cost" : 265092370.15,
+      "length" : 1880.675424130,
+      "score" : 13.064612636590,
+      "unconnected_oks_ids" : [ ],
+      "geometry_quality" : {
+        "corners" : 43,
+        "small_kinks" : 1,
+        "near_collinear" : 2,
+        "short_segments" : 1,
+        "chamber_jogs" : 2,
+        "min_segment_m" : 0.542
+      }
+    } ]
+  },
+  "timing_seconds" : {
+    "depth_stage" : 6.557901584,
+    "ingest" : 0.142682958,
+    "solve" : 277.696013875,
+    "verify_export" : 7.127714
+  },
+  "java_version" : "11.0.32.1",
+  "memory" : {
+    "heap_max_mb" : 4096,
+    "peak_heap_pools_mb" : 4302
+  }
+}

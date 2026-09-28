@@ -1,0 +1,91 @@
+{
+ "type": "FeatureCollection",
+ "name": "C14_nearest_wall_far_side",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "SRC",
+    "object_type": "source"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.627014883,
+     55.6950991163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "N1",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.627014883,
+      55.6950991163
+     ],
+     [
+      37.6365575071,
+      55.6952054535
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "B1",
+    "object_type": "restriction",
+    "restriction_type": "oks"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       37.6316177285,
+       55.69542009
+      ],
+      [
+       37.6319358182,
+       55.6954236346
+      ],
+      [
+       37.6319232677,
+       55.6957829478
+      ],
+      [
+       37.6316051752,
+       55.6957794031
+      ],
+      [
+       37.6316177285,
+       55.69542009
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "P1",
+    "object_type": "oks_connection_point",
+    "flow_tph": 20.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.631764849,
+     55.6957632099
+    ]
+   }
+  }
+ ]
+}

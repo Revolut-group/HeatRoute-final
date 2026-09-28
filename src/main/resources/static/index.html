@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HeatRoute — расчёт трасс</title>
+<style>
+  :root {
+    --bg: #f4f5f7; --panel: #ffffff; --text: #1d2127; --muted: #626b77; --line: #dde1e6;
+    --accent: #c62828; --accent-soft: #fdecec; --ok: #1f7a3f; --ok-soft: #e7f5ec;
+    --warn: #8a5a00; --warn-soft: #fff4de; --seg: #eef0f3;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15181c; --panel: #1e2227; --text: #e6e8eb; --muted: #9aa3ad; --line: #30363d;
+      --accent: #ff6b6b; --accent-soft: #3a2224; --ok: #5fcf8a; --ok-soft: #1d3326;
+      --warn: #f0b64d; --warn-soft: #3a2f18; --seg: #272c32;
+    }
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 14px/1.45 -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+  .app { display: grid; grid-template-columns: 360px 1fr; min-height: 100vh; }
+  aside { background: var(--panel); border-right: 1px solid var(--line); padding: 20px;
+    display: flex; flex-direction: column; gap: 18px; }
+  main { display: flex; flex-direction: column; min-width: 0; }
+  h1 { font-size: 18px; margin: 0; }
+  .sub { color: var(--muted); font-size: 12px; margin-top: 2px; }
+  label.title { display: block; font-weight: 600; margin-bottom: 6px; }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px;
+    background: var(--seg); border-radius: 10px; }
+  .seg button { border: 0; background: transparent; color: var(--text); padding: 8px 6px;
+    border-radius: 7px; cursor: pointer; font: inherit; font-weight: 600; }
+  .seg button.on { background: var(--panel); box-shadow: 0 1px 3px rgba(0,0,0,.18); color: var(--accent); }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  select, input[type=file] { width: 100%; font: inherit; color: var(--text); background: var(--panel);
+    border: 1px solid var(--line); border-radius: 8px; padding: 6px; }
+  .go { width: 100%; border: 0; border-radius: 10px; padding: 11px; font: inherit; font-weight: 700;
+    background: var(--accent); color: #fff; cursor: pointer; }
+  .go:disabled { opacity: .5; cursor: default; }
+  .status { font-size: 13px; padding: 8px 10px; border-radius: 8px; background: var(--seg); }
+  .status.ok { background: var(--ok-soft); color: var(--ok); }
+  .status.err { background: var(--accent-soft); color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--line); }
+  th { color: var(--muted); font-weight: 600; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.pick { cursor: pointer; }
+  tr.pick:hover td, tr.cur td { background: var(--seg); }
+  .tag { font-size: 11px; padding: 1px 6px; border-radius: 6px; background: var(--seg); white-space: nowrap; }
+  .tag.strict { background: var(--warn-soft); color: var(--warn); }
+  .bar { display: flex; gap: 10px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line);
+    background: var(--panel); flex-wrap: wrap; }
+  .bar a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .bar .sp { flex: 1; }
+  iframe { flex: 1; width: 100%; border: 0; background: var(--panel); min-height: 70vh; }
+  .empty { flex: 1; display: grid; place-items: center; color: var(--muted); padding: 40px; text-align: center; }
+  @media (max-width: 860px) { .app { grid-template-columns: 1fr; } aside { border-right: 0; border-bottom: 1px solid var(--line); } }
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div>
+      <h1>HeatRoute</h1>
+      <div class="sub">Трассы подключения к тепловым сетям · офлайн</div>
+    </div>
+
+    <div>
+      <label class="title" for="file">Входной GeoJSON</label>
+      <input type="file" id="file" accept=".geojson,.json,application/geo+json,application/json">
+    </div>
+
+    <div>
+      <label class="title">Правило ввода в здание (R02/R03)</label>
+      <div class="seg" role="tablist">
+        <button type="button" data-profile="default" class="on">Основной</button>
+        <button type="button" data-profile="strict">Буквальный</button>
+      </div>
+      <div class="hint" id="profileHint"></div>
+    </div>
+
+    <div class="row">
+      <div><label class="title" for="variants">Вариантов</label>
+        <select id="variants"><option>1</option><option>2</option><option selected>3</option></select></div>
+      <div><label class="title" for="stage">Этап</label>
+        <select id="stage"><option value="xy" selected>2D</option><option value="depth">с глубиной</option></select></div>
+      <div><label class="title" for="mode">Поиск</label>
+        <select id="mode"><option value="reproducible" selected>обычный</option><option value="fast">быстрый</option><option value="deep">глубокий</option></select></div>
+    </div>
+
+    <button class="go" id="go" disabled>Рассчитать</button>
+    <div class="status" id="status">Выберите файл.</div>
+
+    <div>
+      <label class="title">Расчёты</label>
+      <table id="runs"><thead><tr><th>Профиль</th><th class="num">S</th><th class="num">Точки</th><th class="num">Время</th></tr></thead><tbody></tbody></table>
+      <div class="hint">Посчитайте один файл в обоих профилях, чтобы сравнить S. Строка открывает отчёт.</div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="bar" id="bar" hidden>
+      <strong id="barTitle"></strong><span class="sp"></span>
+      <a id="lnkResult" download>result.geojson</a>
+      <a id="lnkDepth" download hidden>result-depth.geojson</a>
+      <a id="lnkDiag" target="_blank">diagnostics</a>
+      <a id="lnkReport" target="_blank">отчёт в новой вкладке</a>
+    </div>
+    <iframe id="report" title="Отчёт о расчёте" hidden></iframe>
+    <div class="empty" id="empty">Здесь появится карта и итоги расчёта: S, стоимость, длина, камеры, независимая проверка.</div>
+  </main>
+</div>
+<script>
+(function () {
+  var hints = {
+    "default": "Ввод от ближайшей допустимой точки границы; своим считается весь объект ОКС. Все точки подключаются, если маршрут есть (config/rules-current.yaml).",
+    "strict": "Буквально по приложению: только ближайшая граница части здания, содержащей точку. Если этот ввод перекрыт, точка не подключается (config/rules-strict.yaml)."
+  };
+  var profile = "default", file = null, runs = [];
+  var $ = function (id) { return document.getElementById(id); };
+  function setProfile(p) {
+    profile = p;
+    document.querySelectorAll(".seg button").forEach(function (b) { b.classList.toggle("on", b.dataset.profile === p); });
+    $("profileHint").textContent = hints[p];
+  }
+  document.querySelectorAll(".seg button").forEach(function (b) {
+    b.addEventListener("click", function () { setProfile(b.dataset.profile); });
+  });
+  setProfile("default");
+  $("file").addEventListener("change", function (e) {
+    file = e.target.files[0] || null;
+    $("go").disabled = !file;
+    status(file ? "Готово к расчёту: " + file.name : "Выберите файл.");
+  });
+  function status(text, kind) {
+    var s = $("status"); s.textContent = text; s.className = "status" + (kind ? " " + kind : "");
+  }
+  var names = { RECEIVING: "приём файла", VALIDATING: "проверка входа", INDEXING: "индексация",
+    SOLVING: "поиск трасс", VERIFYING: "независимая проверка", SUCCEEDED: "готово" };
+  $("go").addEventListener("click", function () {
+    if (!file) return;
+    $("go").disabled = true;
+    var started = Date.now(), p = profile, stage = $("stage").value;
+    var q = "variants=" + $("variants").value + "&stage=" + stage + "&mode=" + $("mode").value + "&profile=" + p;
+    status("Отправка…");
+    fetch("/api/v1/jobs?" + q, { method: "POST", headers: { "Content-Type": "application/geo+json" }, body: file })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok) throw j; return j; }); })
+      .then(function (job) { poll(job.job_id, p, stage, started); })
+      .catch(function (e) { fail(e); });
+  });
+  function fail(e) {
+    var msg = e && e.error ? e.error.code + ": " + e.error.message : String(e && e.message || e);
+    status("Ошибка — " + msg, "err");
+    $("go").disabled = !file;
+  }
+  function poll(id, p, stage, started) {
+    fetch("/api/v1/jobs/" + id).then(function (r) { return r.json(); }).then(function (j) {
+      var sec = Math.round((Date.now() - started) / 1000);
+      if (j.state === "SUCCEEDED") return done(id, p, stage, sec);
+      if (j.state === "FAILED" || j.state === "CANCELLED")
+        return fail({ error: { code: j.errorCode || j.state, message: j.errorMessage || "" } });
+      status((names[j.stage] || j.stage) + " · " + sec + " с");
+      setTimeout(function () { poll(id, p, stage, started); }, 1500);
+    }).catch(fail);
+  }
+  function best(fc) {
+    var b = null;
+    fc.features.forEach(function (f) {
+      var pr = f.properties || {};
+      if (pr.object_type === "variant_summary" && (b === null || pr.rank < b.rank)) b = pr;
+    });
+    return b;
+  }
+  function done(id, p, stage, sec) {
+    fetch("/api/v1/jobs/" + id + "/result").then(function (r) { return r.json(); }).then(function (fc) {
+      var b = best(fc);
+      var run = { id: id, profile: p, stage: stage, sec: sec, name: file ? file.name : "",
+        score: b ? b.score : null, missing: b ? (b.unconnected_oks_ids || []).length : null };
+      runs.unshift(run);
+      render(); open(run);
+      status("Готово за " + sec + " с. S = " + fmt(run.score) + (run.missing ? ", не подключено: " + run.missing : ""), "ok");
+      $("go").disabled = !file;
+      location.hash = "jobs=" + runs.map(function (r) { return r.id; }).join(",");
+    }).catch(fail);
+  }
+  // #jobs=id1,id2 opens finished jobs (a link to share a calculation); the profile comes from
+  // the job's diagnostics (rules_version of the strict profile is lct_2026_09_19)
+  function load(ids) {
+    Promise.all(ids.map(function (id) {
+      return Promise.all([
+        fetch("/api/v1/jobs/" + id + "/diagnostics").then(function (r) { return r.json(); }),
+        fetch("/api/v1/jobs/" + id + "/result").then(function (r) { return r.ok ? r.json() : null; })
+      ]).then(function (x) {
+        var d = x[0], fc = x[1], b = fc ? best(fc) : null, t = d.timing_seconds || {};
+        return { id: id, profile: String(d.profile || "").indexOf("lct_2026_09_19") === 0 ? "strict" : "default",
+          stage: d.depth_stage ? "depth" : "xy", name: "",
+          sec: Math.round((t.solve || 0) + (t.ingest || 0) + (t.verify_export || 0) + (t.depth_stage || 0)),
+          score: b ? b.score : null, missing: b ? (b.unconnected_oks_ids || []).length : null };
+      }).catch(function () { return null; });
+    })).then(function (list) {
+      runs = list.filter(Boolean).concat(runs);
+      render();
+      if (runs.length) open(runs[0]);
+    });
+  }
+  var m = /jobs=([0-9a-f,-]+)/.exec(location.hash);
+  if (m) load(m[1].split(",").filter(Boolean));
+  function fmt(v) { return v === null || v === undefined ? "—" : Number(v).toFixed(3).replace(".", ","); }
+  function render() {
+    var tb = document.querySelector("#runs tbody"); tb.innerHTML = "";
+    runs.forEach(function (r) {
+      var tr = document.createElement("tr"); tr.className = "pick"; tr.dataset.id = r.id;
+      var tag = r.profile === "strict" ? '<span class="tag strict">буквальный</span>' : '<span class="tag">основной</span>';
+      tr.innerHTML = "<td>" + tag + "</td><td class='num'>" + fmt(r.score) + "</td><td class='num'>" +
+        (r.missing === null ? "—" : (r.missing ? "−" + r.missing : "все")) + "</td><td class='num'>" + r.sec + " с</td>";
+      tr.title = r.name;
+      tr.addEventListener("click", function () { open(r); });
+      tb.appendChild(tr);
+    });
+  }
+  function open(run) {
+    document.querySelectorAll("#runs tr.pick").forEach(function (tr) { tr.classList.toggle("cur", tr.dataset.id === run.id); });
+    var base = "/api/v1/jobs/" + run.id;
+    $("barTitle").textContent = (run.profile === "strict" ? "Буквальный профиль" : "Основной профиль") + " · S = " + fmt(run.score);
+    $("lnkResult").href = base + "/result";
+    $("lnkDepth").href = base + "/result-depth"; $("lnkDepth").hidden = run.stage !== "depth";
+    $("lnkDiag").href = base + "/diagnostics";
+    $("lnkReport").href = base + "/report";
+    $("report").src = base + "/report";
+    $("bar").hidden = false; $("report").hidden = false; $("empty").hidden = true;
+  }
+})();
+</script>
+</body>
+</html>

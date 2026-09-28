@@ -1,0 +1,161 @@
+{
+ "type": "FeatureCollection",
+ "name": "C15a_oks_corridor_dn400",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "SRC",
+    "object_type": "source"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.627014883,
+     55.6950991163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "N1",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.627014883,
+      55.6950991163
+     ],
+     [
+      37.6365575071,
+      55.6952054535
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "BL",
+    "object_type": "restriction",
+    "restriction_type": "oks"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       37.6313663957,
+       55.6953274255
+      ],
+      [
+       37.6316844846,
+       55.6953309707
+      ],
+      [
+       37.6316719319,
+       55.6956902838
+      ],
+      [
+       37.6313538401,
+       55.6956867385
+      ],
+      [
+       37.6313663957,
+       55.6953274255
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "BR",
+    "object_type": "restriction",
+    "restriction_type": "oks"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       37.631875338,
+       55.6953330975
+      ],
+      [
+       37.6321934269,
+       55.6953366414
+      ],
+      [
+       37.6321808789,
+       55.6956959546
+      ],
+      [
+       37.631862787,
+       55.6956924106
+      ],
+      [
+       37.631875338,
+       55.6953330975
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "B3",
+    "object_type": "restriction",
+    "restriction_type": "oks"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       37.6316026645,
+       55.6958512657
+      ],
+      [
+       37.6319207576,
+       55.6958548104
+      ],
+      [
+       37.6319144823,
+       55.696034467
+      ],
+      [
+       37.6315963876,
+       55.6960309223
+      ],
+      [
+       37.6316026645,
+       55.6958512657
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "P1",
+    "object_type": "oks_connection_point",
+    "flow_tph": 943.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6317610834,
+     55.6958710038
+    ]
+   }
+  }
+ ]
+}

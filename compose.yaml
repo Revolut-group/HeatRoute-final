@@ -1,0 +1,51 @@
+# docker compose up -d --build     then: curl http://127.0.0.1:18081/api/v1/health
+# Apple Silicon / ARM: the pinned postgis/postgis:16-3.4 is amd64-only (runs under emulation); for a native image set
+#   POSTGIS_IMAGE=imresamu/postgis:16-3.4.3-bookworm@sha256:6da75969915039b7356058b4310d43fde88c275ada982c2dfee29da68445ff4d
+# (same PostGIS 3.4 / PostgreSQL 16 build, linux/amd64 + linux/arm64, from the docker-postgis maintainers).
+services:
+  db:
+    image: ${POSTGIS_IMAGE:-postgis/postgis:16-3.4@sha256:44126d872ac91993766c341e369c539e8196614321765d36a6f1bab0419a5fa5}
+    environment:
+      POSTGRES_DB: heatroute
+      POSTGRES_USER: heatroute
+      POSTGRES_PASSWORD: heatroute-local
+    volumes:
+      - postgis-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U heatroute -d heatroute && psql -U heatroute -d heatroute -Atc 'SELECT postgis_version()'"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    mem_limit: 1g
+    networks: [offline]
+  app:
+    image: heatroute:6.0.0
+    build: .
+    environment:
+      HEATROUTE_JDBC_URL: jdbc:postgresql://db:5432/heatroute
+      HEATROUTE_DB_USER: heatroute
+      HEATROUTE_DB_PASSWORD: heatroute-local
+      HEATROUTE_POSTGIS: "true"
+      # Heap = 80 % of mem_limit (5g -> about 4 GB, recommended for solving; 1g still works with lower quality).
+      JAVA_TOOL_OPTIONS: ${HEATROUTE_JAVA_OPTS:--XX:MaxRAMPercentage=80}
+    healthcheck:
+      test: ["CMD", "java", "-XX:MaxRAMPercentage=10", "-jar", "/app/heatroute.jar", "health"]
+      interval: 15s
+      timeout: 8s
+      retries: 10
+    ports: ["${HEATROUTE_HOST:-127.0.0.1}:${HEATROUTE_PORT:-18081}:8080"]
+    volumes:
+      - results:/app/work
+    depends_on:
+      db:
+        condition: service_healthy
+    mem_limit: ${HEATROUTE_MEM_LIMIT:-5g}
+    # db stays on the internal network; app also joins `public` so the published port is reachable from the host.
+    networks: [offline, public]
+networks:
+  offline:
+    internal: true
+  public: {}
+volumes:
+  postgis-data:
+  results:

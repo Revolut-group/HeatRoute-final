@@ -1,0 +1,122 @@
+{
+  "valid" : true,
+  "rules_hash" : "f38c970471955067a91fafbddce989911902d58aebc649ff481b4888ccaf634a",
+  "errors" : [ ],
+  "warnings" : [ {
+    "code" : "SMALL_KINK",
+    "variant_id" : "variant_1",
+    "feature_id" : "lct19_1_27",
+    "message" : "turn 15.5 deg between 1.24 m and 13.76 m at 37.634483302438,55.699596611427"
+  }, {
+    "code" : "SMALL_KINK",
+    "variant_id" : "variant_2",
+    "feature_id" : "lct19_2_24",
+    "message" : "turn 17.3 deg between 27.00 m and 1.05 m at 37.633879787791,55.697627843105"
+  }, {
+    "code" : "SMALL_KINK",
+    "variant_id" : "variant_2",
+    "feature_id" : "lct19_2_27",
+    "message" : "turn 15.5 deg between 1.24 m and 13.76 m at 37.634483302438,55.699596611427"
+  }, {
+    "code" : "SMALL_KINK",
+    "variant_id" : "variant_3",
+    "feature_id" : "lct19_3_37",
+    "message" : "turn 2.1 deg between 111.81 m and 1.12 m at 37.633678456265,55.698841891297"
+  } ],
+  "variants" : [ {
+    "variant_id" : "variant_1",
+    "rank" : 1,
+    "connected_demands" : 17,
+    "connected_flow_tph" : 488.72,
+    "calculated_cost" : 258130317.68,
+    "length" : 1920.454984455,
+    "score" : 12.989013848405,
+    "unconnected_oks_ids" : [ ],
+    "geometry_quality" : {
+      "corners" : 47,
+      "small_kinks" : 1,
+      "near_collinear" : 2,
+      "short_segments" : 1,
+      "chamber_jogs" : 3,
+      "min_segment_m" : 0.918
+    }
+  }, {
+    "variant_id" : "variant_2",
+    "rank" : 2,
+    "connected_demands" : 17,
+    "connected_flow_tph" : 488.72,
+    "calculated_cost" : 261674974.57,
+    "length" : 1896.477938191,
+    "score" : 13.016333102533,
+    "unconnected_oks_ids" : [ ],
+    "geometry_quality" : {
+      "corners" : 46,
+      "small_kinks" : 2,
+      "near_collinear" : 2,
+      "short_segments" : 1,
+      "chamber_jogs" : 2,
+      "min_segment_m" : 0.918
+    }
+  }, {
+    "variant_id" : "variant_3",
+    "rank" : 3,
+    "connected_demands" : 17,
+    "connected_flow_tph" : 488.72,
+    "calculated_cost" : 265092370.15,
+    "length" : 1880.675424130,
+    "score" : 13.064612636590,
+    "unconnected_oks_ids" : [ ],
+    "geometry_quality" : {
+      "corners" : 43,
+      "small_kinks" : 1,
+      "near_collinear" : 2,
+      "short_segments" : 1,
+      "chamber_jogs" : 2,
+      "min_segment_m" : 0.542
+    }
+  } ],
+  "scope" : "Saved geometry, graph, flows, diameters, cost; route-search completeness and global optimality are not proven",
+  "rule_decisions" : [ {
+    "id" : "R01",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026",
+    "status" : "from_appendix",
+    "interpretation" : "2D; без реконструкции существующей сети и надбавки за повороты; ДУ по каждому непрерывному пути (разъяснения 1–2); выход — heat_network, heat_chamber, technical_node, variant_summary; неподключение только если маршрут не найден (разъяснение 15)"
+  }, {
+    "id" : "R02",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, разъяснение 3",
+    "status" : "documented_interpretation",
+    "interpretation" : "Финальный прямой участок идёт от ближайшей к точке границы содержащего полигона. Если такой прямой участок геометрически невозможен (перекрыт другим ограничением), берётся ближайшая допустимая точка границы того же полигона; такие точки перечислены в diagnostics.terminal_approaches"
+  }, {
+    "id" : "R03",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, разъяснения 3–4, приложение §1.2",
+    "status" : "documented_interpretation",
+    "interpretation" : "«Полигон ОКС» = весь объект restriction oks, содержащий точку (все части MultiPolygon): отступ к нему не действует только на финальном прямом участке; пересекать другие части запрещено"
+  }, {
+    "id" : "R04",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, таблица 2, разъяснения 6–8, 10",
+    "status" : "from_appendix",
+    "interpretation" : "road/tram: один прямой спецпроход под углом ≥45° к линии или границе полигона на входе, продление 3 м, K 1,60/1,75; gas/power/heat_network ±2 м, K 1,25/1,15/1,05; перекрытие — максимальный K; railway и прочие запретные — отступ 1 м"
+  }, {
+    "id" : "R05",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, разъяснения 11–13",
+    "status" : "documented_interpretation",
+    "interpretation" : "Существующая камера обязательна в радиусе 10.0 м (+0.1 м запас) при свободной степени; камеры, не лежащие на линии, привязываются к ближайшей линии в пределах 1.5 м; стоимость новой камеры — по наибольшему ДУ всех примыкающих участков, включая существующую линию"
+  }, {
+    "id" : "R06",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, приложение §2.1, разъяснение 5",
+    "status" : "documented_interpretation",
+    "interpretation" : "Поворот ≤90° проверяется и внутри линии, и в камере между входящей трубой и каждой исходящей"
+  }, {
+    "id" : "R07",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, разъяснения 9 и 17",
+    "status" : "documented_interpretation",
+    "interpretation" : "Неизвестные restriction_type: skip; невалидные полигоны: error; каждое допущение записывается в diagnostics.input_audit.warnings"
+  }, {
+    "id" : "R08",
+    "source" : "Техническое приложение и разъяснения ЛЦТ, 19.09.2026, приложение §5, таблица 2",
+    "status" : "documented_interpretation",
+    "interpretation" : "Режим с глубиной (--stage depth) — отдельный набор вариантов поверх тех же трасс. Глубина в точках подключения и врезках — обычная 3.0 м, если профиль это допускает; иначе она освобождается и это пишется в диагностику. Вертикальные требования к газу, кабелю и существующей сети действуют на всём спецучастке ±2 м (и на всём плановом перекрытии габаритов при малом угле); под дорогой и трамваем — на всём спецучастке. Сторона (выше/ниже) выбирается по минимальной стоимости, профиль — огибающая с уклоном 0.1; Kгл по среднему концов, деление в точке 3,0 м"
+  } ],
+  "judge_tolerance_uses" : 0,
+  "minimum_clearance_margin_m" : 0.010000212784028406
+}

@@ -1,0 +1,91 @@
+{
+ "type": "FeatureCollection",
+ "name": "C03_limit_upsizing",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "SRC",
+    "object_type": "source"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.627014883,
+     55.6950991163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "N1",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.627014883,
+      55.6950991163
+     ],
+     [
+      37.6365575071,
+      55.6952054535
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "B1",
+    "object_type": "restriction",
+    "restriction_type": "oks"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       37.6315650025,
+       55.6969292049
+      ],
+      [
+       37.6318831044,
+       55.6969327497
+      ],
+      [
+       37.6318768286,
+       55.6971124063
+      ],
+      [
+       37.6315587253,
+       55.6971088614
+      ],
+      [
+       37.6315650025,
+       55.6969292049
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "P1",
+    "object_type": "oks_connection_point",
+    "flow_tph": 3.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6317234258,
+     55.6969489431
+    ]
+   }
+  }
+ ]
+}

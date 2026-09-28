@@ -1,0 +1,91 @@
+{
+ "type": "FeatureCollection",
+ "name": "C06_forced_tie_in",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "SRC",
+    "object_type": "source"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6316589521,
+     55.6951509597
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "N1",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.6316589521,
+      55.6951509597
+     ],
+     [
+      37.6317861871,
+      55.6951523776
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "N2",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.6317861871,
+      55.6951523776
+     ],
+     [
+      37.6319134221,
+      55.6951537953
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "EXC",
+    "object_type": "heat_chamber"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6317861871,
+     55.6951523776
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "P1",
+    "object_type": "oks_connection_point",
+    "flow_tph": 20.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6317736354,
+     55.6955116907
+    ]
+   }
+  }
+ ]
+}

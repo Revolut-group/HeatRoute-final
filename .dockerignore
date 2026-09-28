@@ -1,0 +1,13 @@
+**
+!Dockerfile
+!pom.xml
+!src/
+!src/main/
+!src/main/**
+!config/
+!config/**
+!target/
+!target/heatroute.jar
+!.m2/
+!.m2/repository/
+!.m2/repository/**

@@ -1,0 +1,141 @@
+{
+ "type": "FeatureCollection",
+ "name": "C01_basic_dn_boundary",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "SRC",
+    "object_type": "source"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.627014883,
+     55.6950991163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "N1",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.627014883,
+      55.6950991163
+     ],
+     [
+      37.6365575071,
+      55.6952054535
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "B1",
+    "object_type": "restriction",
+    "restriction_type": "oks"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       37.6284368359,
+       55.6953845986
+      ],
+      [
+       37.6287549248,
+       55.6953881515
+      ],
+      [
+       37.628748635,
+       55.6955678078
+      ],
+      [
+       37.6284305446,
+       55.6955642549
+      ],
+      [
+       37.6284368359,
+       55.6953845986
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "B2",
+    "object_type": "restriction",
+    "restriction_type": "oks"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       37.6347986283,
+       55.695455499
+      ],
+      [
+       37.6351167186,
+       55.6954590354
+      ],
+      [
+       37.635110458,
+       55.6956386922
+      ],
+      [
+       37.6347923662,
+       55.6956351558
+      ],
+      [
+       37.6347986283,
+       55.695455499
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 1,
+    "object_type": "oks_connection_point",
+    "flow_tph": 22.3
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6285952513,
+     55.6954043408
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 2,
+    "object_type": "oks_connection_point",
+    "flow_tph": 22.31
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6349570473,
+     55.695475233
+    ]
+   }
+  }
+ ]
+}

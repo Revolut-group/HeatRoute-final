@@ -1,0 +1,71 @@
+{
+ "type": "FeatureCollection",
+ "name": "C05_limit_restart_at_dn_change",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "SRC",
+    "object_type": "source"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.627014883,
+     55.6950991163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "N1",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.627014883,
+      55.6950991163
+     ],
+     [
+      37.6365575071,
+      55.6952054535
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "PA",
+    "object_type": "oks_connection_point",
+    "flow_tph": 3.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6316951809,
+     55.6977573974
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "PB",
+    "object_type": "oks_connection_point",
+    "flow_tph": 20.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.63184396,
+     55.6962313803
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,133 @@
+{
+ "type": "FeatureCollection",
+ "name": "C08_full_chamber_four_adjacent",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "SRC",
+    "object_type": "source"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6301957506,
+     55.6951346444
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "NW",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.6301957506,
+      55.6951346444
+     ],
+     [
+      37.6317861871,
+      55.6951523776
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "NE",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.6317861871,
+      55.6951523776
+     ],
+     [
+      37.6333766253,
+      55.6951700901
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "NS",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.6317861871,
+      55.6951523776
+     ],
+     [
+      37.6318175651,
+      55.6942540946
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "NSE",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.6317861871,
+      55.6951523776
+     ],
+     [
+      37.6329214406,
+      55.6945359801
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "EXC",
+    "object_type": "heat_chamber"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6317861871,
+     55.6951523776
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "P1",
+    "object_type": "oks_connection_point",
+    "flow_tph": 20.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6318213489,
+     55.6955122224
+    ]
+   }
+  }
+ ]
+}

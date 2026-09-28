@@ -1,0 +1,64 @@
+rules_version: lct_2026_09_19
+input:
+  profile: auto
+  source_crs: lonlat_wgs84
+  projected_crs: EPSG:32637
+  invalid_geometry: repair
+  unknown_restriction: skip
+  missing_existing_flow: reduced_profile_with_diagnostics
+  host_access: containing_building_part_only
+  terminal_entry_policy: nearest_boundary
+geometry:
+  topology_snap_m: 0.10
+  numeric_epsilon_m: 0.000001
+  judge_distance_tolerance_m: 0.001
+  routing_safety_margin_m: 0.01
+  coarse_grid_m: 3.0
+  final_grid_snap: false
+  chamber_radius_m: 10.0
+  chamber_radius_inclusive: true
+  nearby_chamber_selection: minimum_total_cost_then_score
+  railway_policy: forbidden
+  railway_clearance_m: 1.0
+  metro_policy: forbidden
+  metro_clearance_m: 1.0
+diameter:
+  selection: minimum_capacity
+  length_scope: continuous_path
+  uplift: minimum_feasible_diameter
+cost:
+  weight_cost: 0.7
+  weight_length: 0.3
+  base_cost_rub: 25000000
+  base_length_m: 100
+  tie_in_rub: 5000000
+  unconnected_fixed_rub: 100000000
+  unconnected_per_tph_rub: 500000
+  special_overlap: piecewise_max
+  road_special_extent: from_polygon
+  nonstandard_turn_factor: 1.0
+  turn_scope: outgoing_straight_run
+  standard_turn_tolerance_deg: 0.01
+depth:
+  enabled: false
+  policy: appendix
+  normal_m: 3.0
+  minimum_cover_m: 0.7
+  maximum_slope: 0.10
+  output_z: false
+output:
+  maximum_variants: 3
+  coordinate_decimals: 12
+  length_decimals: 9
+  cost_decimals: 2
+  score_decimals: 12
+execution:
+  mode: reproducible
+  seed: 16092026
+  small_problem_max_demands: 25
+  beam_width: 64
+  maximum_candidate_evaluations: 50000
+  time_budget_seconds: null
+  ingest_batch_bytes: 8388608
+  route_cache_bytes: 268435456
+  worker_count: 1

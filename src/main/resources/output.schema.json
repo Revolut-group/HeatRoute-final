@@ -1,0 +1,614 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HeatRoute v5 output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "type",
+    "features"
+  ],
+  "properties": {
+    "type": {
+      "const": "FeatureCollection"
+    },
+    "features": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "geometry",
+              "properties"
+            ],
+            "properties": {
+              "type": {
+                "const": "Feature"
+              },
+              "geometry": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "type",
+                  "coordinates"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "LineString"
+                  },
+                  "coordinates": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "array",
+                      "minItems": 2,
+                      "maxItems": 2,
+                      "items": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "object_type",
+                  "variant_id",
+                  "start_node_id",
+                  "end_node_id",
+                  "flow_tph",
+                  "diameter",
+                  "length",
+                  "laying_method",
+                  "depth_start",
+                  "depth_end",
+                  "cost"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "object_type": {
+                    "const": "heat_network"
+                  },
+                  "variant_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "start_node_id": {
+                    "type": "string"
+                  },
+                  "end_node_id": {
+                    "type": "string"
+                  },
+                  "flow_tph": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "diameter": {
+                    "type": "integer"
+                  },
+                  "length": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "laying_method": {
+                    "enum": [
+                      "base",
+                      "special"
+                    ]
+                  },
+                  "depth_start": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "depth_end": {
+                    "type": [
+                      "number",
+                      "null"
+                    ]
+                  },
+                  "cost": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "geometry",
+              "properties"
+            ],
+            "properties": {
+              "type": {
+                "const": "Feature"
+              },
+              "geometry": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "type",
+                  "coordinates"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Point"
+                  },
+                  "coordinates": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "object_type",
+                  "variant_id",
+                  "existing_object_id",
+                  "existing_object_type",
+                  "existing_diameter",
+                  "required_diameter",
+                  "cost"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "object_type": {
+                    "const": "tie_in"
+                  },
+                  "variant_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "existing_object_id": {
+                    "type": "string"
+                  },
+                  "existing_object_type": {
+                    "enum": [
+                      "heat_network",
+                      "heat_chamber"
+                    ]
+                  },
+                  "existing_diameter": {
+                    "type": "integer"
+                  },
+                  "required_diameter": {
+                    "type": "integer"
+                  },
+                  "cost": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "geometry",
+              "properties"
+            ],
+            "properties": {
+              "type": {
+                "const": "Feature"
+              },
+              "geometry": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "type",
+                  "coordinates"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "LineString"
+                  },
+                  "coordinates": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                      "type": "array",
+                      "minItems": 2,
+                      "maxItems": 2,
+                      "items": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "object_type",
+                  "variant_id",
+                  "existing_object_id",
+                  "existing_flow_tph",
+                  "added_flow_tph",
+                  "calculated_flow_tph",
+                  "existing_diameter",
+                  "required_diameter",
+                  "length",
+                  "cost"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "object_type": {
+                    "const": "heat_network_reconstruction"
+                  },
+                  "variant_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "existing_object_id": {
+                    "type": "string"
+                  },
+                  "existing_flow_tph": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "added_flow_tph": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "calculated_flow_tph": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "existing_diameter": {
+                    "type": "integer"
+                  },
+                  "required_diameter": {
+                    "type": "integer"
+                  },
+                  "length": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "cost": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "geometry",
+              "properties"
+            ],
+            "properties": {
+              "type": {
+                "const": "Feature"
+              },
+              "geometry": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "type",
+                  "coordinates"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Point"
+                  },
+                  "coordinates": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "object_type",
+                  "variant_id",
+                  "diameter",
+                  "cost"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "object_type": {
+                    "const": "heat_chamber"
+                  },
+                  "variant_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "diameter": {
+                    "type": "integer"
+                  },
+                  "cost": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "geometry",
+              "properties"
+            ],
+            "properties": {
+              "type": {
+                "const": "Feature"
+              },
+              "geometry": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "type",
+                  "coordinates"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Point"
+                  },
+                  "coordinates": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "object_type",
+                  "variant_id",
+                  "existing_object_id",
+                  "existing_diameter",
+                  "required_diameter",
+                  "cost"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "object_type": {
+                    "const": "heat_chamber_reconstruction"
+                  },
+                  "variant_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "existing_object_id": {
+                    "type": "string"
+                  },
+                  "existing_diameter": {
+                    "type": "integer"
+                  },
+                  "required_diameter": {
+                    "type": "integer"
+                  },
+                  "cost": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "geometry",
+              "properties"
+            ],
+            "properties": {
+              "type": {
+                "const": "Feature"
+              },
+              "geometry": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "type",
+                  "coordinates"
+                ],
+                "properties": {
+                  "type": {
+                    "const": "Point"
+                  },
+                  "coordinates": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": {
+                      "type": "number"
+                    }
+                  }
+                }
+              },
+              "properties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "object_type",
+                  "variant_id"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "object_type": {
+                    "const": "technical_node"
+                  },
+                  "variant_id": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "geometry",
+              "properties"
+            ],
+            "properties": {
+              "type": {
+                "const": "Feature"
+              },
+              "geometry": {
+                "type": "null"
+              },
+              "properties": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "id",
+                  "object_type",
+                  "variant_id",
+                  "rank",
+                  "construction_cost",
+                  "chamber_construction_cost",
+                  "tie_in_cost",
+                  "reconstruction_cost",
+                  "chamber_reconstruction_cost",
+                  "unconnected_penalty",
+                  "calculated_cost",
+                  "new_network_length",
+                  "reconstruction_length",
+                  "length",
+                  "score",
+                  "unconnected_oks_ids"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "object_type": {
+                    "const": "variant_summary"
+                  },
+                  "variant_id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "rank": {
+                    "type": "integer"
+                  },
+                  "construction_cost": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "chamber_construction_cost": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "tie_in_cost": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "reconstruction_cost": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "chamber_reconstruction_cost": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "unconnected_penalty": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "calculated_cost": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "new_network_length": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "reconstruction_length": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "length": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "score": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "unconnected_oks_ids": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+ "type": "FeatureCollection",
+ "name": "C12_railway_ring_unconnected",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "SRC",
+    "object_type": "source"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.627014883,
+     55.6950991163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "N1",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.627014883,
+      55.6950991163
+     ],
+     [
+      37.6365575071,
+      55.6952054535
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "RW1",
+    "object_type": "restriction",
+    "restriction_type": "railway"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       37.6311468729,
+       55.695235115
+      ],
+      [
+       37.6324192257,
+       55.6952492934
+      ],
+      [
+       37.6323941336,
+       55.6959679198
+      ],
+      [
+       37.6311217575,
+       55.6959537411
+      ],
+      [
+       37.6311468729,
+       55.695235115
+      ]
+     ],
+     [
+      [
+       37.631302778,
+       55.6953267163
+      ],
+      [
+       37.6322570447,
+       55.6953373501
+      ],
+      [
+       37.6322382234,
+       55.6958763199
+      ],
+      [
+       37.6312839435,
+       55.6958656859
+      ],
+      [
+       37.631302778,
+       55.6953267163
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "P-1",
+    "object_type": "oks_connection_point",
+    "flow_tph": 20.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6317704974,
+     55.695601519
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 7,
+    "object_type": "oks_connection_point",
+    "flow_tph": 10.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6349545428,
+     55.6955470957
+    ]
+   }
+  }
+ ]
+}

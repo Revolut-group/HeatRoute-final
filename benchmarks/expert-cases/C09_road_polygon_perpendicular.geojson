@@ -1,0 +1,126 @@
+{
+ "type": "FeatureCollection",
+ "name": "C09_road_polygon_perpendicular",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "SRC",
+    "object_type": "source"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.627014883,
+     55.6950991163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "N1",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.627014883,
+      55.6950991163
+     ],
+     [
+      37.6365575071,
+      55.6952054535
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "R1",
+    "object_type": "restriction",
+    "restriction_type": "road"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       37.6270101598,
+       55.6952338585
+      ],
+      [
+       37.6365528167,
+       55.6953401962
+      ],
+      [
+       37.6365496897,
+       55.6954300246
+      ],
+      [
+       37.6270070109,
+       55.6953236866
+      ],
+      [
+       37.6270101598,
+       55.6952338585
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "B1",
+    "object_type": "restriction",
+    "restriction_type": "oks"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       37.6316120795,
+       55.6955817809
+      ],
+      [
+       37.6319301705,
+       55.6955853255
+      ],
+      [
+       37.6319238953,
+       55.6957649821
+      ],
+      [
+       37.6316058028,
+       55.6957614375
+      ],
+      [
+       37.6316120795,
+       55.6955817809
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "P1",
+    "object_type": "oks_connection_point",
+    "flow_tph": 20.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6317704974,
+     55.695601519
+    ]
+   }
+  }
+ ]
+}

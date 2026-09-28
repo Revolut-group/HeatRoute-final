@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "HeatRoute v5 input",
+  "type": "object",
+  "required": [
+    "type",
+    "features"
+  ],
+  "properties": {
+    "type": {
+      "const": "FeatureCollection"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "type",
+          "geometry",
+          "properties"
+        ],
+        "properties": {
+          "type": {
+            "const": "Feature"
+          },
+          "geometry": {
+            "type": "object",
+            "required": [
+              "type",
+              "coordinates"
+            ]
+          },
+          "properties": {
+            "type": "object",
+            "required": [
+              "id",
+              "object_type"
+            ],
+            "properties": {
+              "id": {
+                "oneOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "object_type": {
+                "enum": [
+                  "source",
+                  "heat_network",
+                  "heat_chamber",
+                  "oks_connection_point",
+                  "oks_future",
+                  "oks_existing",
+                  "restriction"
+                ]
+              },
+              "flow_tph": {
+                "type": "number",
+                "minimum": 0
+              },
+              "diameter": {
+                "type": "integer",
+                "enum": [
+                  50,
+                  65,
+                  80,
+                  100,
+                  125,
+                  150,
+                  200,
+                  250,
+                  300,
+                  400,
+                  500,
+                  600,
+                  700,
+                  800,
+                  900,
+                  1000,
+                  1200,
+                  1400
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

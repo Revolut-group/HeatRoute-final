@@ -1,0 +1,91 @@
+{
+ "type": "FeatureCollection",
+ "name": "C16_road_angle_45",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "SRC",
+    "object_type": "source"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.627014883,
+     55.6950991163
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "N1",
+    "object_type": "heat_network",
+    "diameter": 200
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      37.627014883,
+      55.6950991163
+     ],
+     [
+      37.6301957506,
+      55.6951346444
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "R1",
+    "object_type": "restriction",
+    "restriction_type": "road"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       37.6254181469,
+       55.6952609775
+      ],
+      [
+       37.6365512532,
+       55.6953851104
+      ],
+      [
+       37.6365481262,
+       55.6954749389
+      ],
+      [
+       37.6254149944,
+       55.6953508055
+      ],
+      [
+       37.6254181469,
+       55.6952609775
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": "P1",
+    "object_type": "oks_connection_point",
+    "flow_tph": 20.0
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     37.6317673594,
+     55.6956913473
+    ]
+   }
+  }
+ ]
+}
