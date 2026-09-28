@@ -58,7 +58,7 @@ docker compose down
 curl.exe -X POST `
   -H "Content-Type: application/geo+json" `
   --data-binary "@benchmarks\expert-cases\C01_basic_dn_boundary.geojson" `
-  "http://127.0.0.1:18081/api/v1/calculate?stage=xy&variants=1&mode=fast&profile=default" `
+  "http://127.0.0.1:18081/api/v1/calculate?stage=xy&variants=3&mode=fast&profile=default" `
   -o result-check.geojson
 ```
 
@@ -68,7 +68,7 @@ Linux:
 curl -X POST \
   -H 'Content-Type: application/geo+json' \
   --data-binary '@benchmarks/expert-cases/C01_basic_dn_boundary.geojson' \
-  'http://127.0.0.1:18081/api/v1/calculate?stage=xy&variants=1&mode=fast&profile=default' \
+  'http://127.0.0.1:18081/api/v1/calculate?stage=xy&variants=3&mode=fast&profile=default' \
   -o result-check.geojson
 ```
 
@@ -91,7 +91,7 @@ $inputPath = "C:\path\to\input.geojson"
 $job = curl.exe -s -X POST `
   -H "Content-Type: application/geo+json" `
   --data-binary "@$inputPath" `
-  "http://127.0.0.1:18081/api/v1/jobs?stage=xy&variants=1&mode=fast&profile=default" `
+  "http://127.0.0.1:18081/api/v1/jobs?stage=xy&variants=3&mode=fast&profile=default" `
   | ConvertFrom-Json
 
 curl.exe "http://127.0.0.1:18081/api/v1/jobs/$($job.job_id)"
@@ -113,7 +113,7 @@ INPUT_PATH=/path/to/input.geojson
 JOB_ID=$(curl -s -X POST \
   -H 'Content-Type: application/geo+json' \
   --data-binary "@$INPUT_PATH" \
-  'http://127.0.0.1:18081/api/v1/jobs?stage=xy&variants=1&mode=fast&profile=default' \
+  'http://127.0.0.1:18081/api/v1/jobs?stage=xy&variants=3&mode=fast&profile=default' \
   | jq -r '.job_id')
 
 curl "http://127.0.0.1:18081/api/v1/jobs/$JOB_ID"
@@ -144,6 +144,12 @@ curl "http://127.0.0.1:18081/api/v1/jobs/$JOB_ID/diagnostics" -o diagnostics.jso
 - `mode=fast|reproducible|deep` — быстрый, воспроизводимый или расширенный поиск;
 - `stage=xy|depth` — плановая геометрия или отдельный расчёт с глубинами;
 - `profile=default|strict` — основной либо буквальный профиль входа в здание.
+
+Дефолт параметры (уже в запросах выше):
+variants=3
+mode=fast
+stage=xy
+profile=default
 
 ## Запуск без Docker
 
